@@ -13,9 +13,9 @@ Les scripts s'exécutent depuis **Siril → Scripts**, ouvrent une interface PyQ
 | Script | Description | Doc |
 |---|---|---|
 | `SirilJ_Mesures_FR.py` / `SirilJ_Mesures_US.py` | **Mesures interactives** : distance, angle, aire, forme libre (« patate »), profil d'intensité R/G/B, statistiques de zone, sonde pixel. Conversions angulaires (WCS) et physiques, **calibration par diamètre d'objet** (Soleil, planètes…). FR et US. | [FR](SirilJ_Mesures_doc_FR.md) · [US](SirilJ_Mesures_doc_US.md) |
-| `SirilJ_SolarAlign.py` | **Alignement de séquence solaire H-alpha** : recale la séquence courante par **StackReg** (portage de Thévenaz/EPFL) ou **ECC** (OpenCV), avec aperçu de la référence, conversion en séquence, empilement et chargement du résultat dans Siril. | [FR](SirilJ_SolarAlign_doc_FR.md) |
-| `SirilJ_Analyse.py` | **Analyse d'image** : *Analyze Particles* (comptage/morphométrie : taches solaires, étoiles…) et *Surface Plot 3D* (relief d'intensité). | [FR](SirilJ_Analyse_doc_FR.md) |
-| `SirilJ_Sequence.py` | **Outils de séquence** : *Make Montage* (planche-contact) et *Blink / Animation* (défilement + différence d'images pour repérer les objets mobiles). | [FR](SirilJ_Sequence_doc_FR.md) |
+| `SirilJ_SolarAlign.py` | **Alignement de séquence solaire H-alpha** : recale la séquence courante par **StackReg** (portage de Thévenaz/EPFL) ou **ECC** (OpenCV), avec aperçu de la référence, conversion en séquence, empilement et chargement du résultat dans Siril. | [FR](SirilJ_SolarAlign_doc_FR.md) · [US](SirilJ_SolarAlign_doc_US.md) |
+| `SirilJ_Analyse.py` | **Analyse d'image** : *Analyze Particles* (comptage/morphométrie : taches solaires, étoiles…) et *Surface Plot 3D* (relief d'intensité). | [FR](SirilJ_Analyse_doc_FR.md) · [US](SirilJ_Analyse_doc_US.md) |
+| `SirilJ_Sequence.py` | **Outils de séquence** : *Make Montage* (planche-contact) et *Blink / Animation* (défilement + différence d'images pour repérer les objets mobiles). | [FR](SirilJ_Sequence_doc_FR.md) · [US](SirilJ_Sequence_doc_US.md) |
 
 ---
 
