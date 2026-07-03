@@ -577,8 +577,8 @@ class SequenceWindow(QMainWindow):
         if self._montage is None:
             return
         base = self.seq_info["seqname"] if self.seq_info else "montage"
-        default = str(Path(self.seq_info["work_dir"]) / f"{base}_montage.fit") \
-            if self.seq_info else "montage.fit"
+        # Répertoire de travail de Siril (os.getcwd()) par défaut.
+        default = str(Path(os.getcwd()) / f"{base}_montage.fit")
         f, _ = QFileDialog.getSaveFileName(self, "Enregistrer le montage", default,
                                            "FITS (*.fit *.fits)")
         if not f:
@@ -589,7 +589,7 @@ class SequenceWindow(QMainWindow):
             # Charge dans Siril (sans extension)
             stem = str(Path(f).with_suffix(""))
             try:
-                self.siril.cmd("load", stem)
+                self.siril.cmd(f'load "{stem}"')   # guillemets : chemins avec espaces
                 self.siril.log(f"SirilJ Séquence — montage chargé : {Path(f).name}")
             except Exception:
                 self.statusBar().showMessage(f"✓ Enregistré : {f} (chargez-le manuellement)")

@@ -586,7 +586,8 @@ class AnalyseWindow(QMainWindow):
     def _export_csv(self):
         if not self._particles:
             return
-        f, _ = QFileDialog.getSaveFileName(self, "Exporter CSV", "particules.csv",
+        f, _ = QFileDialog.getSaveFileName(self, "Exporter CSV",
+                                           os.path.join(os.getcwd(), "particules.csv"),
                                            "CSV (*.csv)")
         if not f:
             return

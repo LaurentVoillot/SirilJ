@@ -33,6 +33,7 @@ Compatibilité
 import sys
 import os
 import re
+import html
 
 try:
     import sirilpy as s
@@ -94,8 +95,8 @@ QGroupBox::title   { subcontrol-origin:margin; subcontrol-position:top left;
 QProgressBar       { border:1px solid #555; border-radius:3px; background:#1e1e1e;
                      text-align:center; color:#d4d4d4; }
 QProgressBar::chunk { background:#2a6f2a; }
-QTextEdit          { background:#1a1a1a; border:1px solid #444; color:#b4b4b4;
-                     font-family:monospace; font-size:10px; }
+QTextEdit          { background:#000; border:1px solid #444; color:#c8c8c8;
+                     font-family:monospace; font-size:12px; }
 QGraphicsView      { background:#111; border:1px solid #444; }
 QScrollBar:vertical   { background:#2b2b2b; width:10px; }
 QScrollBar::handle:vertical { background:#555; border-radius:5px; }
@@ -800,7 +801,7 @@ class SolarAlignWindow(QMainWindow):
         # On se place dans le sous-dossier isolé : `convert` n'y voit QUE les
         # frames alignées (aucun original), et `stack`/`load` y trouvent leur
         # sortie. On restaure le dossier de travail Siril à la fin.
-        if not siril_safe_cmd(self.siril, "cd", subdir_abs):
+        if not siril_safe_cmd(self.siril, f'cd "{subdir_abs}"'):   # guillemets : espaces
             self._log(f"⚠ Impossible de faire 'cd {subdir_abs}' dans Siril. "
                       "Étapes Siril annulées.")
             return
@@ -838,7 +839,7 @@ class SolarAlignWindow(QMainWindow):
                     self._log(f"⚠ Échec de load (chargez {result_file} manuellement).")
         finally:
             # Restaure le dossier de travail d'origine de Siril.
-            siril_safe_cmd(self.siril, "cd", orig_wd)
+            siril_safe_cmd(self.siril, f'cd "{orig_wd}"')   # guillemets : espaces
 
     def _set_idle(self):
         self.btn_prep.setEnabled(self.seq_info is not None)
@@ -858,7 +859,13 @@ class SolarAlignWindow(QMainWindow):
     #  Log
     # =========================================================================
     def _log(self, msg: str):
-        self.log.append(msg)
+        # Avertissements (⚠) et erreurs (✗) affichés en gras dans le journal.
+        esc = html.escape(msg)
+        if msg.lstrip().startswith(("⚠", "✗")):
+            line = f'<div style="font-weight:bold">{esc}</div>'
+        else:
+            line = f'<div style="font-weight:normal">{esc}</div>'
+        self.log.append(line)
         self.log.ensureCursorVisible()
         self.statusBar().showMessage(msg)
 
