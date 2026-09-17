@@ -19,6 +19,25 @@ Les scripts s'exécutent depuis **Siril → Scripts**, ouvrent une interface PyQ
 
 ---
 
+## Voir aussi
+
+La chaîne complète de **traitement HDR d'éclipse solaire** — conversion RAW triée par
+vitesse, alignement sur la Lune, empilement, fusion HDR, révélation de la couronne — est
+dans le dépôt **[Eclipse_HDR](https://github.com/LaurentVoillot/Eclipse_HDR)**.
+
+> **Vous cherchez l'alignement sur la Lune ?** Il est là-bas, dans
+> [`scripts/SirilJ_Align.py`](https://github.com/LaurentVoillot/Eclipse_HDR/blob/main/scripts/SirilJ_Align.py) :
+> malgré son préfixe « SirilJ », ce fichier appartient à Eclipse_HDR. Il offre deux modes,
+> ☼ *Soleil — surface* (recalage multi-points par corrélation de phase et champ de
+> déformation local) et ☾ *Éclipse — Lune* (recalage de poses de luminosités très
+> différentes sur le disque lunaire).
+>
+> Le `SirilJ_SolarAlign.py` ci-dessus est l'aligneur solaire **d'origine**, par StackReg
+> ou ECC — une transformation globale, sans mode Lune. Les deux approches restent
+> valables ; elles ne recalent simplement pas de la même manière.
+
+---
+
 ## Installation
 
 1. Copier les fichiers de [`scripts/`](scripts/) dans le dossier de scripts de Siril :
